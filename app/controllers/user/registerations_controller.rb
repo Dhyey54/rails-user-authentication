@@ -11,8 +11,7 @@ class User::RegisterationsController < ApplicationController
       flash[:success] = "User successfully created"
       redirect_to user_login_path
     else
-      flash[:error] = "Something went wrong"
-      render 'new'
+      render :new, status: :unprocessable_entity
     end
   end
 

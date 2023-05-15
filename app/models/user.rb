@@ -5,7 +5,7 @@ class User < ApplicationRecord
   before_save :email_downcase
 
   validates :email, :username, uniqueness: true
-  validates :password_digest, presence: true
+  validates :password, confirmation: true, presence: true
 
   private
 
