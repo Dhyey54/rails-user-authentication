@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   has_secure_password
+  has_secure_token :remember_token
 
   before_save :email_downcase
 
-  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }, presence: true, uniqueness: true
+  validates :email, :username, uniqueness: true
+  validates :password_digest, presence: true
 
   private
 
