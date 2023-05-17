@@ -8,6 +8,7 @@ class User::SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
+      # binding.pry
       if @user.authenticate(params[:user][:password])
         login @user
         remember(@user) if params[:user][:remember_me] == "1"
@@ -23,7 +24,7 @@ class User::SessionsController < ApplicationController
   end
 
   def destroy
-    forget(current_user)
+    forget(current_user) if cookies[:remember_token].present?
     logout
     redirect_to root_path, notice: 'Signed out.'
   end

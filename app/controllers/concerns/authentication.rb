@@ -1,4 +1,5 @@
 module Authentication
+  extend ActiveSupport::Concern
 
   def login(user)
     reset_session
@@ -11,11 +12,11 @@ module Authentication
 
   def forget(user)
     cookies.delete :remember_token
-    user.regenerate_remember_token
+    regenerate_remember_token(user)
   end
 
   def remember(user)
-    user.regenerate_remember_token
+    regenerate_remember_token(user)
     cookies.permanent.encrypted[:remember_token] = user.remember_token
   end
 
@@ -35,5 +36,10 @@ module Authentication
 
   def user_signed_in?
     @current_user.present?
+  end
+
+  def regenerate_remember_token(user)
+    user.remember_token = user.secure_remember_token
+    user.save(validate: false)
   end
 end
