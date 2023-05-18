@@ -28,10 +28,10 @@ module Authentication
 
   def current_user
     @current_user ||= if session[:current_user_id].present?
-      User.find_by(id: session[:current_user_id])
-    elsif cookies.permanent.encrypted[:remember_token].present?
-      User.find_by(remember_token: cookies.permanent.encrypted[:remember_token])
-    end
+                        User.find_by(id: session[:current_user_id])
+                      elsif cookies.permanent.encrypted[:remember_token].present?
+                        User.find_by(remember_token: cookies.permanent.encrypted[:remember_token])
+                      end
   end
 
   def user_signed_in?
