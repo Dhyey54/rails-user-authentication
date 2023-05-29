@@ -8,7 +8,6 @@ class User::SessionsController < ApplicationController
   def create
     @user = User.find_by(email: params[:user][:email].downcase)
     if @user
-      # binding.pry
       if @user.authenticate(params[:user][:password])
         login @user
         remember(@user) if params[:user][:remember_me] == "1"
