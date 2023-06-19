@@ -35,6 +35,8 @@ gem 'bootstrap', '~> 5.3.0.alpha3'
 
 gem 'pry'
 
+gem 'activerecord-session_store'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
