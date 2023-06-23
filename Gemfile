@@ -33,8 +33,10 @@ gem "jbuilder"
 # Using Bootstrap gem for css
 gem 'bootstrap', '~> 5.3.0.alpha3'
 
+# Use pry for debugging during development
 gem 'pry'
 
+# Use activerecord-session_store for storing session in database 
 gem 'activerecord-session_store'
 
 # Use Redis adapter to run Action Cable in production
